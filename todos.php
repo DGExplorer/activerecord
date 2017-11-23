@@ -1,6 +1,7 @@
 <?php
 
-class todos extends collection {
+class todos extends group
+{
     protected static $modelName = 'todo';
 
 }

@@ -4,8 +4,8 @@ abstract class model {
 
     public function save()
     {
-        if ($this)->id != ''){
-        $sql = $this->update();
+        if ($this->id != '') {
+            $sql = $this->update();
         } else {
         $sql = $this->insert();
     }
@@ -21,5 +21,4 @@ abstract class model {
 
         }
     }
-
-}
+?>

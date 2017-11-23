@@ -13,6 +13,7 @@ class todo extends model {
 
         $tableName='todos';
         return $tableName;
-        
+
     }
 }
+?>

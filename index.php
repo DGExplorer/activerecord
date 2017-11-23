@@ -7,18 +7,17 @@ error_reporting(E_ALL);
 define ('DATABASE', 'dg457');
 define ('USERNAME', 'dg457');
 define ('PASSWORD', 'xx0YWWEe');
-define ('CONNECTION', 'sq22.njit.edu');
+define ('CONNECTION', 'sql1.njit.edu');
     
 //autoloader class to allow for any file or directory
-class Manage
-{
+class Manage {
     public static function autoload($class)
     {
         include $class . '.php';
     }
 }
 
-spl_autoload_register(array('Manage', 'autoloader'));
+spl_autoload_register(array('Manage', 'autoload'));
 
 $obj = new main();
 class main {
@@ -37,9 +36,9 @@ class main {
         //Find one record
         $form .= '<h2>Select one record</h2>';
         $id=3;
-        $records = accounts::findone($id);
+        $records = accounts::findOne($id);
         $tableSet = htmltable::generateTablefromOnerecord($records);
-        $form .= '<h2>Retrieval of record by idzxxxxxxxxxxxxxxxxxxxs0: '.$id.'</h2>';
+        $form .= '<h2>Retrieval of record by id: '.$id.'</h2>';
         $form .= $tableSet;
 
         //Insert one record
@@ -52,7 +51,7 @@ class main {
         $record->birthday="01-01-1938";
         $record->gender="male";
         $record->password="98765";
-        $lastInsertid=$record->save();
+        $last_id = $record->save();
         $records = accounts::findAll();
         $tableSet = htmltable::generateTablefromMultiArray($records);
         $form .= '<h2>Inserted record</h2>';
@@ -60,17 +59,19 @@ class main {
 
         //Update one record
         $form .= '<h2>Update one record</h2>';
-        $records = accounts::findOne($lastInsertedid);
+        $records = accounts::findOne($last_id);
         $record = new account();
         $record->id=$records->id;
         $record->birthday="02-02-1940";
         $record->save();
-        $form .= ''<h2>Record update with 
+        $form .= '<h2>Record update with</h2>';
+
+        
 
 
     }
 }
-
+?>
 
 
 

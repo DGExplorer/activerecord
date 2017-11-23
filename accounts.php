@@ -1,6 +1,6 @@
 <?php
 
-class accounts extends collection {
+class accounts extends group {
     protected static $modelName = 'account';
 
 }

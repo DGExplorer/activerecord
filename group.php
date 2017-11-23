@@ -17,7 +17,7 @@ abstract class group {
         $recordsSet = $statement->fetchAll();
         return $recordsSet;
     }
-    static public function findOne(id) {
+    static public function findOne($id) {
         $db = dbConn::getConnection();
         $tableName = get_called_class();
         $sql = 'SELECT * FROM ' . $tableName . ' WHERE id =' . $id;
