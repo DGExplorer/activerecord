@@ -1,6 +1,7 @@
 <?php
 
 abstract class group {
+    
     static public function create() {
         $model = new static::$modelName;
         return $model;
@@ -24,7 +25,7 @@ abstract class group {
         $statement = $db->prepare($sql);
         $statement->execute();
         $class = static::$modelName;
-        $statement->setFetchMode(PDO::FETCH_CLASS, $class);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $class);
         $recordsSet =  $statement->fetchAll();
         return $recordsSet[0];
     }
