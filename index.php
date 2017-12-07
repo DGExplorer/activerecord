@@ -60,7 +60,7 @@ class main {
 
         //Update one record
         $form .= '<h2>Update one record</h2>';
-        $records = accounts::findOne($last_id);
+        $records = accounts::findOne($lastInsertedId);
         $record = new account();
         $record->id=$records->id;
         $record->birthday="02-02-1940";
