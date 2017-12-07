@@ -5,28 +5,20 @@ abstract class model
 
     public function save()
     {
-        if ($this->id != "") {
+        if ($this->id != '') {
             $sql = $this->update();
         } else {
             $sql = $this->insert();
-            $INSERT = TRUE;
 
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
         $array = get_object_vars($this);
-
-        if ($INSERT == TRUE) {
-            unset($array);
-        }
         foreach (array_flip($array) as $key => $value){
             $statement->bindParam(":$value", $this->$value);
         }
         $statement->execute();
-        if ($INSERT == TRUE){
-
-            $this->id = $db->lastInsertId();
-        }
+        $id = $db->lastInsertId();
         return $this->id;
 
         }
