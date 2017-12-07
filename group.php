@@ -1,7 +1,7 @@
 <?php
 
 abstract class group {
-    
+
     static public function create() {
         $model = new static::$modelName;
         return $model;

@@ -11,10 +11,11 @@ define ('CONNECTION', 'sql1.njit.edu');
     
 //autoloader class to allow for any file or directory
 class Manage {
-    public static function autoload($class)
-    {
+    public static function autoload($class){
+
         include $class . '.php';
     }
+
 }
 
 spl_autoload_register(array('Manage', 'autoload'));
