@@ -5,22 +5,36 @@ abstract class model
 
     public function save()
     {
+        if($this->validate() == FALSE) {
+            echo 'failed validation';
+            exit;
+        }
+
         if ($this->id != '') {
             $sql = $this->update();
         } else {
             $sql = $this->insert();
+            $INSERT = TRUE;
 
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
         $array = get_object_vars($this);
-        foreach (array_flip($array) as $key=>$value){
+
+        if ($INSERT == TRUE) {
+
+            unset($array['id']);
+        }
+
+        foreach (array_flip($array) as $key=> $value){
             $statement->bindParam(":$value", $this->$value);
         }
         $statement->execute();
-        $id = $db->lastInsertId();
-        return $id;
+        if ($INSERT == TRUE) {
 
+            $this->id = $db->lastInsertId();
+        }
+        return $this->id;
         }
 
         private function insert() {
