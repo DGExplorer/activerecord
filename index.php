@@ -23,7 +23,7 @@ spl_autoload_register(array('Manage', 'autoload'));
 $obj = new main();
 
 class main {
-    
+
     public function __construct(){
 
         //print all outputs
