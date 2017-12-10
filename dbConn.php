@@ -8,11 +8,11 @@ class dbConn{
     {
         try {
             //assign PDO object to DB variable
-            self::$db = new PDO('mysql:host=' . CONNECTION .';dbname=' . DATABASE, USERNAME, PASSWORD);
-            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            self::$db = new \PDO('mysql:host=' . CONNECTION .';dbname=' . DATABASE, USERNAME, PASSWORD );
+            self::$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 
-        } catch (PDOException $e) {
-            //output error - would
+        } catch (\PDOException $e) {
+            //output error
             echo "Connection Error: " . $e->getMessage();
         }
     }

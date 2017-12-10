@@ -14,12 +14,12 @@ abstract class model
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
         $array = get_object_vars($this);
-        foreach (array_flip($array) as $key => $value){
+        foreach (array_flip($array) as $key=>$value){
             $statement->bindParam(":$value", $this->$value);
         }
         $statement->execute();
         $id = $db->lastInsertId();
-        return $this->id;
+        return $id;
 
         }
 
@@ -29,7 +29,7 @@ abstract class model
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         $columnString = implode(',', array_flip($array));
-        $valueString = ':' .implode(',;', array_flip($array));
+        $valueString = ':'.implode(',;', array_flip($array));
         $sql = 'INSERT INTO' .$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
         return $sql;
 
@@ -41,7 +41,7 @@ abstract class model
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         $comma = " ";
-        $sql = 'UPDATE ' .$tableName.'SET ';
+        $sql = 'UPDATE ' .$tableName.' SET ';
         foreach ($array as $key=>$value){
             if( ! empty($value)) {
                 $sql .= $comma .$key . ' = "'. $value .'"';
@@ -54,7 +54,7 @@ abstract class model
 
         }
     }
-    private function delete() {
+    public function delete() {
         $db = dbConn::getConnection();
         $modelName=static::$modelName;
         $tableName = $modelName::getTablename();
