@@ -5,11 +5,7 @@ abstract class model
 
     public function save()
     {
-        if($this->validate() == FALSE) {
-            echo 'failed validation';
-            exit;
-        }
-
+        
         if ($this->id != '') {
             $sql = $this->update();
         } else {
@@ -39,7 +35,7 @@ abstract class model
 
         private function insert() {
 
-        $modelName=static::$modelName;
+        $modelName = static::$modelName;
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         $columnString = implode(',', array_flip($array));
