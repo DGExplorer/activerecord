@@ -54,7 +54,7 @@ class main {
         $record->birthday="01-01-1938";
         $record->gender="male";
         $record->password="98765";
-        $lastInsertedId = $record->save();
+        $lastInsertedId=$record->save();
         $records = accounts::findAll();
         $tableSet = htmlTable::generateTablefromMultiArray($records);
         $form .= '<h2>Inserted record</h2>';

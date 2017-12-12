@@ -5,7 +5,7 @@ abstract class model
 
     public function save()
     {
-        
+
         if ($this->id != '') {
             $sql = $this->update();
         } else {
