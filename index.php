@@ -51,7 +51,7 @@ class main {
         $record->fname="Big";
         $record->lname="Dog";
         $record->phone="555-123-4567";
-        $record->birthday="01-01-1938";
+        $record->birthday="1938-01-01";
         $record->gender="male";
         $record->password="98765";
         $lastInsertedId=$record->save();
@@ -65,7 +65,13 @@ class main {
         $records = accounts::findOne($lastInsertedId);
         $record = new account();
         $record->id=$records->id;
-        $record->birthday="02-02-1940";
+        $record->email="goofy@disney.com";
+        $record->fname="Big";
+        $record->lname="Dog";
+        $record->phone="555-123-4567";
+        $record->birthday="1940-02-02";
+        $record->gender="male";
+        $record->password="98765";
         $record->save();
         $form .= '<h2>Record update with id: ' .$records->id.'</h2>';
         $records = accounts::findAll();
@@ -93,7 +99,7 @@ class main {
 
         //Select one record
         $form .= '<h2>Select one record</h2>';
-        $id=7;
+        $id="7";
         $records = todos::findOne($id);
         $tableSet = htmlTable::generateTableFromOneRecord($records);
         $form .= '<h3>Record retrieved with id: '.$id.'</h3>';
@@ -103,14 +109,14 @@ class main {
         $form .= '<h2>Insert one record</h2>';
         $record = new todo();
         $record->owneremail="firstone@njit.com";
-        $record->ownerid=8;
-        $record->createddate="01-01-2001";
-        $record->duedate="02-02-2002";
+        $record->ownerid="8";
+        $record->createddate="2001-01-01";
+        $record->duedate="2002-02-02";
         $record->message="newly admitted";
-        $record->isdone=2;
+        $record->isdone="2";
         $lastInsertedId=$record->save();
         $records = todos::findAll();
-        $tableSet = htmlTable::genarateTableFromMultiArray($records);
+        $tableSet = htmlTable::generateTableFromMultiArray($records);
         $form .= '<h3>After Inserting</h3>';
         $form .= $tableSet;
 
@@ -119,12 +125,16 @@ class main {
         $records = todos::findOne($lastInsertedId);
         $record = new todo();
         $record->id=$records->id;
+        $record->owneremail="firstone@njit.com";
         $record->ownerid="8";
+        $record->createddate="2001-01-01";
+        $record->duedate="2002-02-02";
         $record->message="inital semester";
+        $record->isdone="2";
         $record->save();
         $form .= '<h3>Record update with id: '.$records->id.'</h3>';
         $records = todos::findAll();
-        $tableSet = htmlTable::genarateTableFromMultiArray($records);
+        $tableSet = htmlTable::generateTableFromMultiArray($records);
         $form .= $tableSet;
 
         //Delete one record
@@ -136,7 +146,7 @@ class main {
         $form .= '<h3>Record with id: '.$records->id.' is deleted</h3>';
         $form .= '<h3>Deletion completed</h3>';
         $records = todos::findAll();
-        $tableSet = htmlTable::genarateTableFromMultiArray($records);
+        $tableSet = htmlTable::generateTableFromMultiArray($records);
         $form .= $tableSet;
         $form .= '</form> ';
         print($form);
