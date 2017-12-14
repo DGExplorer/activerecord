@@ -11,6 +11,7 @@ abstract class model
         } else {
             $sql = $this->insert();
             $INSERT = TRUE;
+            print($sql);
 
         }
         $db = dbConn::getConnection();
@@ -39,7 +40,7 @@ abstract class model
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         $columnString = implode(',', array_flip($array));
-        $valueString = ':'.implode(',;', array_flip($array));
+        $valueString = ':'.implode(',:', array_flip($array));
         $sql = 'INSERT INTO' .$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
         return $sql;
 
