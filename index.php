@@ -84,7 +84,7 @@ class main {
         $record = new account();
         $record->id=$records->id;
         $records->delete();
-        $form .= '<h2>Completed deletion</h2>';
+        $form .= '<h2>Completed deletion of last ID</h2>';
         $records = accounts::findAll();
         $tableSet = htmlTable::generateTablefromMultiArray($records);
         $form .= $tableSet;
@@ -109,7 +109,7 @@ class main {
         $form .= '<h2>Insert one record</h2>';
         $record = new todo();
         $record->owneremail="firstone@njit.com";
-        $record->ownerid="8";
+        $record->ownerid="3";
         $record->createddate="2001-01-01";
         $record->duedate="2002-02-02";
         $record->message="newly admitted";
@@ -125,11 +125,10 @@ class main {
         $records = todos::findOne($lastInsertedId);
         $record = new todo();
         $record->id=$records->id;
-        $record->owneremail="firstone@njit.com";
-        $record->ownerid="8";
-        $record->createddate="2001-01-01";
-        $record->duedate="2002-02-02";
-        $record->message="inital semester";
+        $record->owneremail="johndoe@njit.edu";
+        $record->createddate="2007-01-01";
+        $record->duedate="2007-07-07";
+        $record->message="second semester";
         $record->isdone="2";
         $record->save();
         $form .= '<h3>Record update with id: '.$records->id.'</h3>';
@@ -144,7 +143,7 @@ class main {
         $record->id=$records->id;
         $record->delete();
         $form .= '<h3>Record with id: '.$records->id.' is deleted</h3>';
-        $form .= '<h3>Deletion completed</h3>';
+        $form .= '<h3>Deletion completed of last ID</h3>';
         $records = todos::findAll();
         $tableSet = htmlTable::generateTableFromMultiArray($records);
         $form .= $tableSet;
